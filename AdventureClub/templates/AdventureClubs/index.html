@@ -1,0 +1,31 @@
+{% extends 'AdventureClubs/base.html' %}
+
+{% block body_block %}
+
+<h1>Siyahat Homepage</h1>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<h1>Sort Clubs city Wise</h1>
+{%for c in city%}
+{%for city in c.values%}
+<form method="POST">
+    {%csrf_token%}
+    <button name="city" value="{{city}}">{{city}}</button>
+
+</form>
+{%endfor%}
+{%endfor%}
+
+{%for obj in club%}
+  <h1> Club name: {{obj.club_name}}</h1>
+   <h1>  Contact:{{obj.contact}}</h1>
+    <h1> Email:{{obj.email}}</h1>
+    <h1> City:{{obj.city}}</h1>
+{%endfor%}
+{% endblock %}
